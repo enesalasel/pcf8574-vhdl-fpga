@@ -136,7 +136,7 @@ PCF8574/
 │   ├── arduino_test_suite/         # Comprehensive I2C hardware diagnostic sketch
 │   └── arduino_lcd_demo/           # Clean 1602 LCD live display sketch
 └── doc/
-    ├── PCF8574_DESIGN_REPORT.md    # Detailed engineering report (Arabic)
+    ├── PCF8574_DESIGN_REPORT.md    # Detailed engineering design & verification report
     └── images/                     # Hardware photos & animated GIF demo
 ```
 
