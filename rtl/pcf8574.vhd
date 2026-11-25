@@ -47,6 +47,10 @@ end entity pcf8574;
 
 architecture rtl of pcf8574 is
 
+    -- Reset Synchronizer (Asynchronous Assert, Synchronous Deassert)
+    signal rst_sync1      : std_logic := '0';
+    signal rst_sync2      : std_logic := '0';
+
     signal sda_drive_low  : std_logic;
     signal int_drive_low  : std_logic;
     signal port_drive_low : std_logic_vector(7 downto 0);
@@ -65,6 +69,20 @@ begin
     port_pin_in <= p;
 
     ----------------------------------------------------------------------------
+    -- Reset Synchronizer (Async Assert, Sync Deassert)
+    ----------------------------------------------------------------------------
+    process(clk, rst_n)
+    begin
+        if rst_n = '0' then
+            rst_sync1 <= '0';
+            rst_sync2 <= '0';
+        elsif rising_edge(clk) then
+            rst_sync1 <= '1';
+            rst_sync2 <= rst_sync1;
+        end if;
+    end process;
+
+    ----------------------------------------------------------------------------
     -- Instantiate PCF8574 Core Logic
     ----------------------------------------------------------------------------
     u_core : pcf8574_core
@@ -74,7 +92,7 @@ begin
         )
         port map (
             clk            => clk,
-            rst_n          => rst_n,
+            rst_n          => rst_sync2,
             a              => a_vector,
             scl_in         => scl,
             sda_in         => sda,

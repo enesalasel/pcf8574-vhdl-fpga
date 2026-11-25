@@ -12,6 +12,8 @@ A complete, synthesizable **VHDL** hardware implementation of the **NXP PCF8574 
 
 ![Live Hardware Demo GIF](doc/images/hardware_demo.gif)
 
+> **Hardware Note:** The small static dots visible in a few cells of the 1602 LCD in the photo/GIF are **physical dead pixels / glass defects** inside the LCD panel itself (they remain visible even when the display is completely powered off) — they are not I2C or FPGA signal noise.
+
 ---
 
 ## Key Features
@@ -20,8 +22,9 @@ A complete, synthesizable **VHDL** hardware implementation of the **NXP PCF8574 
   - Automatic detection of `START`, `STOP`, and `Repeated START` conditions.
   - Strict 7-bit hardware address decoding supporting `A0, A1, A2` pins and parameterized `ADDR_PREFIX` (`"0100"` for **PCF8574** `0x20–0x27`, `"0111"` for **PCF8574A** `0x38–0x3F`).
   - Supports single-byte and consecutive multi-byte streaming reads and writes.
-- **Metastability-Safe Input Conditioning ([rtl/i2c_filter.vhd](rtl/i2c_filter.vhd)):**
+- **Metastability-Safe Input & Reset Conditioning ([rtl/i2c_filter.vhd](rtl/i2c_filter.vhd), [rtl/pcf8574.vhd](rtl/pcf8574.vhd)):**
   - Dedicated **2-FF CDC synchronizer** (`sync_ff1 -> sync_ff2`) isolating metastability before a configurable shift-register glitch filter (`FILTER_DEPTH`) on `SCL`, `SDA`, and all 8 `P0–P7` pins.
+  - Built-in **2-FF Reset Synchronizer** (asynchronous assert, synchronous deassert) for clean recovery/removal timing.
 - **Quasi-Bidirectional I/O Ports (`P0–P7`):**
   - True open-drain NMOS low drive + High-Z input sensing without a direction register.
   - Power-On Reset (POR) initializes all ports to `0xFF`.
