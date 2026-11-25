@@ -1,0 +1,21 @@
+# GHDL simulation outputs
+*.cf
+*.o
+*.vcd
+*.ghw
+sim/pcf8574_tb
+
+# Gowin EDA build artifacts
+fpga/**/build/
+impl/
+*.gprj.user
+*.fs
+*.bin
+*.binx
+*.vg
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak

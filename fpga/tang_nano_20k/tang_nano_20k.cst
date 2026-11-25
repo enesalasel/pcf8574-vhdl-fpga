@@ -1,0 +1,74 @@
+// =============================================================================
+// Gowin Physical Constraints (.cst) for Sipeed Tang Nano 20K (GW2AR-LV18QN88)
+// Top-level entity: pcf8574_tang20k_top
+// Note: Enable "Use SSPI as regular IO" in Gowin Project Configuration.
+// =============================================================================
+
+// --- System Clock (27 MHz Onboard Crystal) ---
+IO_LOC "clk" 4;
+IO_PORT "clk" IO_TYPE=LVCMOS33 PULL_MODE=NONE;
+
+// --- I2C Bus (Bottom-right header pins 52 & 53) ---
+IO_LOC "scl" 52;
+IO_PORT "scl" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC "sda" 53;
+IO_PORT "sda" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+// --- Interrupt Output (Open-Drain, Active-Low) ---
+IO_LOC "int_n" 51;
+IO_PORT "int_n" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+// --- Hardware Address Pins A0, A1, A2 (Pull-down defaults address to 0x20) ---
+IO_LOC "a0" 54;
+IO_PORT "a0" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
+
+IO_LOC "a1" 55;
+IO_PORT "a1" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
+
+IO_LOC "a2" 56;
+IO_PORT "a2" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
+
+// --- 8 Quasi-Bidirectional I/O Ports P0 - P7 ---
+IO_LOC "p[0]" 25;
+IO_PORT "p[0]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC "p[1]" 26;
+IO_PORT "p[1]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC "p[2]" 27;
+IO_PORT "p[2]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC "p[3]" 28;
+IO_PORT "p[3]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC "p[4]" 29;
+IO_PORT "p[4]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC "p[5]" 30;
+IO_PORT "p[5]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC "p[6]" 31;
+IO_PORT "p[6]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+IO_LOC "p[7]" 48;
+IO_PORT "p[7]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+// --- 6 Onboard Diagnostic LEDs (Active-Low: 0=ON, 1=OFF) ---
+IO_LOC "led_n[0]" 15;
+IO_PORT "led_n[0]" IO_TYPE=LVCMOS33 DRIVE=8;
+
+IO_LOC "led_n[1]" 16;
+IO_PORT "led_n[1]" IO_TYPE=LVCMOS33 DRIVE=8;
+
+IO_LOC "led_n[2]" 17;
+IO_PORT "led_n[2]" IO_TYPE=LVCMOS33 DRIVE=8;
+
+IO_LOC "led_n[3]" 18;
+IO_PORT "led_n[3]" IO_TYPE=LVCMOS33 DRIVE=8;
+
+IO_LOC "led_n[4]" 19;
+IO_PORT "led_n[4]" IO_TYPE=LVCMOS33 DRIVE=8;
+
+IO_LOC "led_n[5]" 20;
+IO_PORT "led_n[5]" IO_TYPE=LVCMOS33 DRIVE=8;
